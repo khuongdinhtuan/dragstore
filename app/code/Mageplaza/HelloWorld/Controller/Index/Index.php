@@ -12,6 +12,7 @@ namespace Mageplaza\HelloWorld\Controller\Index;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
+use Mageplaza\HelloWorld\Model\PostFactory;
 
 class Index extends Action
 {
@@ -20,17 +21,28 @@ class Index extends Action
      */
     protected $_pageFactory;
 
-    public function __construct(Context $context, PageFactory $pageFactory)
+    /**
+     * @var
+     */
+    protected $_postFactory;
+
+    public function __construct(Context $context, PageFactory $pageFactory, PostFactory $postFactory)
     {
         $this->_pageFactory = $pageFactory;
+        $this->_postFactory = $postFactory;
         parent::__construct($context);
     }
 
     public function execute()
     {
-        // TODO: Implement execute() method.
-        // echo "hello world 2";
-        // exit;
+        $post = $this->_postFactory->create();
+        $collection = $post->getCollection();
+        foreach ($collection as $item) {
+            echo "<pre>";
+            print_r($item->getData());
+            echo "</pre>";
+        }
+
         return $this->_pageFactory->create();
     }
 }
