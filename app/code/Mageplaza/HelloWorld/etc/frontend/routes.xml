@@ -5,5 +5,8 @@
         <route frontName="helloworld" id="helloworld">
             <module name="Mageplaza_HelloWorld"/>
         </route>
+        <route frontName="helloworld2" id="helloworld2">
+            <module name="Mageplaza_HelloWorld"/>
+        </route>
     </router>
 </config>
